@@ -30,7 +30,7 @@ function setBaseURL(baseUrl, callback) {
 }
 //'amu-react-webaudio-spike/'
 
-setBaseURL('/amu-react-webaudio-spike', () => {
+setBaseURL('https://amindunited.github.io/amu-react-web-audio-spike', () => {
   ghpages.publish(path.join(__dirname, '../build'), function(err) {
     console.log('Attempting to deploy \'./build\' to Github Pages');
     if (!err) {
