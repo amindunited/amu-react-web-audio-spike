@@ -6,6 +6,8 @@ import App from './App';
 import Home from './components/home/Home';
 import './index.css';
 
+console.log('starting...');
+
 ReactDOM.render(
   <Router history={browserHistory} >
     <Route path='/' component={App}>
