@@ -1,0 +1,92 @@
+.key {
+  position: relative;
+  z-index: 10;
+  background-color: rgba(16, 16, 16, 1);
+  border: solid 1px black;
+  float: left;
+  width: 20px;
+  height: 100px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  background: rgb(237,237,237); /* Old browsers */
+  background: -moz-linear-gradient(top,  rgba(237,237,237,1) 0%, rgba(246,246,246,1) 53%, rgba(255,255,255,1) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(237,237,237,1)), color-stop(53%,rgba(246,246,246,1)), color-stop(100%,rgba(255,255,255,1))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  rgba(237,237,237,1) 0%,rgba(246,246,246,1) 53%,rgba(255,255,255,1) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  rgba(237,237,237,1) 0%,rgba(246,246,246,1) 53%,rgba(255,255,255,1) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  rgba(237,237,237,1) 0%,rgba(246,246,246,1) 53%,rgba(255,255,255,1) 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  rgba(237,237,237,1) 0%,rgba(246,246,246,1) 53%,rgba(255,255,255,1) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededed', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+
+}
+.key.black {
+  z-index: 20;
+  background-color: #333333;
+  position: relative;
+  margin-left: -10px;
+  margin-right: -10px;
+  height: 70px;
+  width: 15px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background: rgb(149,149,149); /* Old browsers */
+  background: -moz-linear-gradient(left,  rgba(149,149,149,1) 0%, rgba(13,13,13,1) 20%, rgba(1,1,1,1) 50%, rgba(10,10,10,1) 79%, rgba(78,78,78,1) 94%, rgba(56,56,56,1) 97%, rgba(27,27,27,1) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(149,149,149,1)), color-stop(20%,rgba(13,13,13,1)), color-stop(50%,rgba(1,1,1,1)), color-stop(79%,rgba(10,10,10,1)), color-stop(94%,rgba(78,78,78,1)), color-stop(97%,rgba(56,56,56,1)), color-stop(100%,rgba(27,27,27,1))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left,  rgba(149,149,149,1) 0%,rgba(13,13,13,1) 20%,rgba(1,1,1,1) 50%,rgba(10,10,10,1) 79%,rgba(78,78,78,1) 94%,rgba(56,56,56,1) 97%,rgba(27,27,27,1) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left,  rgba(149,149,149,1) 0%,rgba(13,13,13,1) 20%,rgba(1,1,1,1) 50%,rgba(10,10,10,1) 79%,rgba(78,78,78,1) 94%,rgba(56,56,56,1) 97%,rgba(27,27,27,1) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(left,  rgba(149,149,149,1) 0%,rgba(13,13,13,1) 20%,rgba(1,1,1,1) 50%,rgba(10,10,10,1) 79%,rgba(78,78,78,1) 94%,rgba(56,56,56,1) 97%,rgba(27,27,27,1) 100%); /* IE10+ */
+  background: linear-gradient(to right,  rgba(149,149,149,1) 0%,rgba(13,13,13,1) 20%,rgba(1,1,1,1) 50%,rgba(10,10,10,1) 79%,rgba(78,78,78,1) 94%,rgba(56,56,56,1) 97%,rgba(27,27,27,1) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#959595', endColorstr='#1b1b1b',GradientType=1 ); /* IE6-9 */
+}
+.key[data-note-number='60'] {
+  background: #eaeaea;
+}
+
+.key.active {
+  transform-origin: top;
+  transform: rotateX(-3deg);
+}
+.key .anim {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: block;
+  overflow: hidden;
+  top: 0px;
+  left: 0px;
+}
+.key .anim .ripple {
+  position: absolute;
+  display: block;
+  width: 5px;
+  height: 5px;
+  left: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: rgba(127, 127, 127 .50);
+  
+  -moz-transform: translate3d( -50%, -50%, 0);
+  -ms-transform: translate3d( -50%, -50%, 0);
+  -webkit-transform: translate3d( -50%, -50%, 0);
+  transform: translate3d( -50%, -50%, 0);
+
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  opacity: 1;
+}
+.key.black .anim .ripple {
+  top: 55%;
+}
+.key.black.active .anim .ripple {
+  background-color: rgba(255, 255, 255, .25);
+}
+
+.key.white.active .anim .ripple {
+  background-color: rgba(127, 127, 127, .25);
+}
+.key.active .anim .ripple {
+  width: 100px;
+  height:100px;
+  transition: width .800s ease-in-out, height .800s ease-in-out, opacity .800s ease-in-out;
+  opacity: 0.5;
+}

@@ -5,6 +5,7 @@ import {Router, Route, Link, IndexRoute, browserHistory, hashHistory} from 'reac
 import App from './App';
 import Home from './components/Home/Home';
 import Tools from './components/Tools/Tools';
+import ToolsStore from './components/Tools/tools.store';
 import FrequencyToTime from './components/Tools/frequency-to-time';
 import './index.css';
 
@@ -16,7 +17,7 @@ ReactDOM.render(
       <IndexRoute component={Home} />
       <Route path='/home' component={Home} />
       <Route path='/tools' component={Tools}>
-        <Route path='freq' component={FrequencyToTime}/>
+        <Route path='freq' component={() => <FrequencyToTime store={new ToolsStore().frequencyToTime}/>}/>
       </Route>
     </Route>
   </Router>,

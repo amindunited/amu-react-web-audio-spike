@@ -3,7 +3,7 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import Subheader from 'material-ui/Subheader';
 import Divider from 'material-ui/Divider';
-import {observer} from "mobx-react";
+import {observer} from 'mobx-react';
 import {Link} from 'react-router';
 
 @observer
