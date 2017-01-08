@@ -25,6 +25,9 @@ export default class SideBar extends React.Component {
           <MenuItem onTouchTap={this.handleClose}>
             <Link to='/tools/freq'>Frequency</Link>
           </MenuItem>
+          <MenuItem onTouchTap={this.handleClose}>
+            <Link to='/tools/synth'>Synth</Link>
+          </MenuItem>
           <Divider />
           <MenuItem onTouchTap={this.handleClose}>Menu Item</MenuItem>
           <MenuItem onTouchTap={this.handleClose}>Menu Item 2</MenuItem>

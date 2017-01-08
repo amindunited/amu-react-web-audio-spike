@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
 import './Key.css';
 
 class Key extends Component {
@@ -20,7 +21,9 @@ class Key extends Component {
     event.preventDefault();
 
     this.setState({active: true});
-    setTimeout(() => {this.noteOff(event, this.oscillator)}, this.release);
+    let _event = new Event('noteOn', {bubbles: true});
+    ReactDOM.findDOMNode(this).dispatchEvent(_event);
+    //setTimeout(() => {this.noteOff(event, this.oscillator)}, this.release);
   }
 
   noteOff (eventProxy) {
@@ -31,6 +34,9 @@ class Key extends Component {
     }
     eventProxy.stopPropagation();
     eventProxy.preventDefault();
+
+    let _event = new Event('noteOff', {bubbles: true});
+    ReactDOM.findDOMNode(this).dispatchEvent(_event);
 
     this.setState({active: false});
   }
@@ -43,7 +49,9 @@ class Key extends Component {
         data-note-number={this.props.noteNumber}
         data-note-name={this.props.name}
         onTouchStart={(o, e) => { this.noteOn(o, e); }}
-        onMouseDown={(o, e) => { this.noteOn(o, e); }}>
+        onMouseDown={(o, e) => { this.noteOn(o, e); }}
+        onTouchEnd={(o, e) => { this.noteOff(o, e); }}
+        onMouseUp={(o, e) => { this.noteOff(o, e); }}>
         <div className="anim">
           <div className="ripple"></div>
         </div>

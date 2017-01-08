@@ -11,6 +11,15 @@ class Keyboard extends Component {
   }
 
   /**
+   * @param  {int} min - lowest number
+   * @param  {int} max - highest number
+   * @return {int} - a random number between min and max
+   */
+  getRandomArbitrary (min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
+  /**
    * Calculates the frequency of a note in Hz
    * @param  {int} noteNumber - The Midi number of the note
    * @return {int} - The frequecy of the note in Hz 
@@ -155,6 +164,7 @@ class Keyboard extends Component {
    * @return {array} - An array of html objects representing the keys
    */
   drawKeys (numberOfKeys) {
+    this.keys = [];//reset the array
     let octaves = this.calculateOctaves(numberOfKeys);
     console.log('octaves ', octaves);
     let numOfRemainingKeys = numberOfKeys % 12;

@@ -23,10 +23,16 @@ class FrequencyToTime extends Component {
     this.store = this.props.store;//new ToolsStore().frequencyToTime;
     //this.props.store = this.store;
     console.log('this.sotre', this.store, this.props);
+    var testOptions = {
+      '1': 'one',
+      '2': 'two'
+    }
     // setInterval(() => {
     //   console.log('interval ', this.store, this.props.store);
     // }, 5000);
   }
+  changeLengthFormat = (event, index, value) => this.store.source_length_format = value;
+
   freqToTime () {
     console.log('freqToTime', this.store.frequency, this);
     this.store.time = Math.round(1000000000*1000/(this.store.frequency))/1000000000;
@@ -43,13 +49,13 @@ class FrequencyToTime extends Component {
               <SelectField
                 floatingLabelText="Length Format"
                 value={this.store.source_length_format}
-                onChange={(event, val) => { this.store.source_length_format = val; }}
+                onChange={this.changeLengthFormat}
                 style={styles.customWidth}
               >
-                <MenuItem value={"Beats"} primaryText="Beats" />
-                <MenuItem value={"Bars"} primaryText="Bars" />
-                <MenuItem value={"Ticks"} primaryText="Ticks" />
-                <MenuItem value={"Milliseconds"} primaryText="Milliseconds" />
+                <MenuItem value={1} primaryText="Beats" />
+                <MenuItem value={2} primaryText="Bars" />
+                <MenuItem value={3} primaryText="Ticks" />
+                <MenuItem value={4} primaryText="Milliseconds" />
               </SelectField>
 
               <TextField floatingLabelText="Frequency" value={this.store.source_frequency} onChange={(event, val)=>{this.store.source_frequency = val;}}/>
@@ -58,7 +64,7 @@ class FrequencyToTime extends Component {
 
             </Tab>
             <Tab label="Result">
-              <Keyboard numberOfKeys={88}/>
+              
             </Tab>
           </Tabs>
         </Card>
