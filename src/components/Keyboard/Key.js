@@ -17,8 +17,10 @@ class Key extends Component {
     } else if (eventProxy.type === 'mousedown' && this.noMouse) {
       return;
     }
-    event.stopPropagation();
-    event.preventDefault();
+    if (event && event.stopPropagation) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
 
     this.setState({active: true});
     let _event = new Event('noteOn', {bubbles: true});
@@ -32,8 +34,10 @@ class Key extends Component {
     } else if (eventProxy.type === 'mousedown' && this.noMouse) {
       return;
     }
-    eventProxy.stopPropagation();
-    eventProxy.preventDefault();
+    if (event && event.stopPropagation) {
+      eventProxy.stopPropagation();
+      eventProxy.preventDefault();
+    }
 
     let _event = new Event('noteOff', {bubbles: true});
     ReactDOM.findDOMNode(this).dispatchEvent(_event);

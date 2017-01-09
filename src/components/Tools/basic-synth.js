@@ -26,10 +26,15 @@ class BasicSynth extends Component {
     this.setUpSound();
     this.qwertyNotes = new QuertyNotes(this.keyDown, this.keyUp);//
     this.qwertyNotes.listen();
+    this.activeNotes = [];
+  }
+
+  onChange (e) {
+    console.log('change happened', e);
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log('component did update');
+    console.log('component did update', prevProps, prevState);
     this.setUpSound();
   }
 
@@ -75,19 +80,37 @@ class BasicSynth extends Component {
   }
 
   noteOn (data) {
-    console.log('Basic Synth noteOn', data);
+    
     let freq = data.target.attributes['data-freq'].value;
+    let noteIndex = this.activeNotes.indexOf(freq);
+    //this.activeNotes.splice(noteIndex, noteIndex+1);
+    if (noteIndex >= 0) {
+      return;
+    }
+
+    console.log('Basic Synth noteOn', data, data.target.attributes['data-note-name'].value);
+
     console.log(freq, typeof freq);
     //.toFixed(3);
     this.oscillator.frequency.value = parseFloat(freq, 3);
     this.gainNode.gain.value = 1;
     //this.oscillator.start(0);
-    console.log('this.oscillator', this.oscillator);
+    this.activeNotes.push(freq);
+    console.log('this.oscillator', this.oscillator, this.activeNotes);
 
   }
-  noteOff () {
-    console.log('Basic Synth noteOff');
-    this.gainNode.gain.value = 0;
+  noteOff (data) {
+    let freq = data.target.attributes['data-freq'].value;
+    let noteIndex = this.activeNotes.indexOf(freq);
+    this.activeNotes.splice(noteIndex, noteIndex+1);
+    console.log('Basic Synth noteOff', data, noteIndex, this.activeNotes, data.target.attributes['data-note-name'].value);
+    if ( !this.activeNotes.length ) {
+      this.gainNode.gain.value = 0;
+    } else {
+      let freq = this.activeNotes[this.activeNotes.length-1];
+      console.log('freq', freq);
+      this.oscillator.frequency.value = parseFloat(freq, 3);
+    }
   }
   render () {
     return (
@@ -99,10 +122,10 @@ class BasicSynth extends Component {
             onChange={(event, index, value) => { this.store.waveform = value; }}
             style={styles.customWidth}
           >
-            <MenuItem value={1} primaryText="Sine" />
-            <MenuItem value={2} primaryText="Square" />
-            <MenuItem value={3} primaryText="Sawtooth" />
-            <MenuItem value={4} primaryText="Triangle" />
+            <MenuItem value={'sine'} primaryText="Sine" />
+            <MenuItem value={'square'} primaryText="Square" />
+            <MenuItem value={'sawtooth'} primaryText="Sawtooth" />
+            <MenuItem value={'triangle'} primaryText="Triangle" />
           </SelectField>
           <Keyboard numberOfKeys={88} noteOn={this.noteOn} noteOff={this.noteOff}/>
         </Card>
