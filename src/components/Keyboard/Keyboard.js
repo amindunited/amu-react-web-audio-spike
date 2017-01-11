@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import {observer} from "mobx-react";
 import Key from './Key';
 import './Keyboard.css';
 
+@observer 
 class Keyboard extends Component {
 
   constructor (props) {
     super(props);
-    this.numberOfKeys = this.props.numberOfKeys ? this.props.numberOfKeys : 88;
     this.keys = [];
   }
 
@@ -197,7 +198,7 @@ class Keyboard extends Component {
     return (
       <div className="keyboard">
         <div className="keyboardWrapper">
-          {this.drawKeys(this.numberOfKeys)}
+          {this.drawKeys(this.props.numberOfKeys)}
         </div>
       </div>
     )

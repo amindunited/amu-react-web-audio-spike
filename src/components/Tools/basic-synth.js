@@ -127,7 +127,20 @@ class BasicSynth extends Component {
             <MenuItem value={'sawtooth'} primaryText="Sawtooth" />
             <MenuItem value={'triangle'} primaryText="Triangle" />
           </SelectField>
-          <Keyboard numberOfKeys={88} noteOn={this.noteOn} noteOff={this.noteOff}/>
+          <SelectField
+            floatingLabelText="Keys"
+            value={this.store.numberOfKeys}
+            onChange={(event, index, value) => { console.log('...number of keys', index, value); this.store.numberOfKeys = value; }}
+            style={styles.customWidth}
+          >
+            <MenuItem value={25} primaryText="25" />
+            <MenuItem value={37} primaryText="37" />
+            <MenuItem value={49} primaryText="49" />
+            <MenuItem value={61} primaryText="61" />
+            <MenuItem value={76} primaryText="76" />
+            <MenuItem value={88} primaryText="88" />
+          </SelectField>
+          <Keyboard numberOfKeys={this.store.numberOfKeys} noteOn={this.noteOn} noteOff={this.noteOff}/>
         </Card>
       </Paper>
     );

@@ -12,6 +12,7 @@ class frequencyToTime {
 */
 class BasicSynthStore {
   @observable waveform = 'sine';
+  @observable numberOfKeys = 25;
 }
 
 export default BasicSynthStore;
